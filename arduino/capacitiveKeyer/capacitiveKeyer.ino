@@ -34,7 +34,7 @@ long pitch = 800;
 
 void sendDit() {
   digitalWrite(13, HIGH);
-  tone(9, pitch, dit);
+  tone(3, pitch, dit);
   delay(dit);
   digitalWrite(13, LOW);
   delay(dit); 
@@ -42,7 +42,7 @@ void sendDit() {
 
 void sendDah() {
   digitalWrite(13, HIGH);
-  tone(9, pitch, dah);
+  tone(3, pitch, dah);
   delay(dah);
   digitalWrite(13, LOW);
   delay(dit); 
@@ -51,7 +51,7 @@ void sendDah() {
 void setup()                    
 {
    pinMode(13, OUTPUT);
-   pinMode(9, OUTPUT);
+   pinMode(3, OUTPUT);
    Serial.begin(9600);
    sendDah();
    sendDit();
