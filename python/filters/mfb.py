@@ -21,7 +21,7 @@ def getEVal(x, tol):
         20:{'steps':6, 'n':2}
         }
     if tol not in tols:
-        print 'Warning: Using default tolerance of 1%'
+        print('Warning: Using default tolerance of 1%')
     steps = tols.get(tol, tols[1])['steps']
     n = tols.get(tol, tols[1])['n']
     sig, exp = scaleSigFigs(x, n)
@@ -47,10 +47,10 @@ def valToSI(val, n = 3, unit = ''):
     s = str(round(s,n)*10**(e%3))
     return '%s %s%s' % (s, prefixes[e - e%3], units.get(unit, ''))
 
-tol = 10
-F = 1000
-B = 200
-H = 10
+tol = 1
+F = 7.15e6
+B = 300e3
+H = 20
 
 
 Q = F/B
@@ -60,20 +60,20 @@ R3 = 2*R1*H
 R2 = R3 / (4*Q**2 - 2*H)
 C = Q/(pi*F*R3)
 
-print "Calculated:  R1 = %.3e, R2 = %.3e, R3 = %.3e" % (R1, R2, R3)
-print "Calculated:  C = %.3e" % (C)
+print("Calculated:  R1 = %.3e, R2 = %.3e, R3 = %.3e" % (R1, R2, R3))
+print("Calculated:  C = %.3e" % (C))
 Cs = getEVal(C, tol)
 
-print "Chosen (%d%%):  C = %s" % (tol, valToSI(Cs, unit = 'F'))    
+print("Chosen (%d%%):  C = %s" % (tol, valToSI(Cs, unit = 'F')))
 
 R3 = Q/(pi*F*C)
 R1 = R3/(2*H)
 R2 = R3 / (4*Q**2 - 2*H)
 
-print "Calculated:  R1 = %.3e, R2 = %.3e, R3 = %.3e" % (R1, R2, R3)
+print ("Calculated:  R1 = %.3e, R2 = %.3e, R3 = %.3e" % (R1, R2, R3))
 R3 = getEVal(Q/(pi*F*C), tol)
 R1 = getEVal(R3/(2*H), tol)
 R2 = getEVal(R3 / (4*Q**2 - 2*H), tol)
-print "Chosen (%d%%):  R1 = %s, R2 = %s, R3 = %s" % (tol, valToSI(R1, unit = 'ohm'), valToSI(R2, unit = 'ohm'), valToSI(R3, unit = 'ohm'))
+print ("Chosen (%d%%):  R1 = %s, R2 = %s, R3 = %s" % (tol, valToSI(R1, unit = 'ohm'), valToSI(R2, unit = 'ohm'), valToSI(R3, unit = 'ohm')))
 
 
